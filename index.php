@@ -137,13 +137,11 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
       </div>
       <!-- /.container -->
     </section>
-
-    <!-- Callout -->
-    <!-- <aside class="callout">
-      <div class="text-vertical-center">
-        <h1></h1>
-      </div>
-    </aside> -->
+    <div class="social col-md-6">
+         <a href="https://www.linkedin.com/in/johan-da-silva-252586145/" class="link linkdin" target="_blank"><span class="fa fa-linkedin-square"></span></a>
+         <a href="https://github.com/johandas" class="link github" target="_blank"><span class="fa fa-github"></span></a>
+         <a href="" class="link google-plus" target="_blank"><span class="fa fa-google-plus-square"></span></a>
+       </div>
 
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio" style="background:#F1F1F1">
@@ -210,26 +208,26 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
 				<form>
 					<div class="col-md-6 form-line">
 			  			<div class="form-group">
-			  				<label for="exampleInputUsername">Your name</label>
-					    	<input type="text" class="form-control" id="" placeholder=" Enter Name">
+			  				<label for="exampleInputUsername">Votre nom *</label>
+					    	<input type="text" class="form-control" id="nomForm" placeholder="Nom *">
 				  		</div>
 				  		<div class="form-group">
-					    	<label for="exampleInputEmail">Email Address</label>
-					    	<input type="email" class="form-control" id="exampleInputEmail" placeholder=" Enter Email id">
+					    	<label for="exampleInputEmail">Votre Email *</label>
+					    	<input type="email" class="form-control" id="emailForm" placeholder="Email *">
 					  	</div>
 					  	<div class="form-group">
-					    	<label for="telephone">Mobile No.</label>
-					    	<input type="tel" class="form-control" id="telephone" placeholder=" Enter 10-digit mobile no.">
+					    	<label for="telephone">Votre numéro de téléphone *</label>
+					    	<input type="tel" class="form-control" id="telephoneForm" placeholder="Téléphone *">
 			  			</div>
 			  		</div>
 			  		<div class="col-md-6">
 			  			<div class="form-group">
-			  				<label for ="description"> Message</label>
-			  			 	<textarea  class="form-control" id="description" placeholder="Enter Your Message"></textarea>
+			  				<label for ="description">Votre message</label>
+			  			 	<textarea  class="form-control" id="descriptionForm" placeholder="Message.. *"></textarea>
 			  			</div>
 			  			<div>
 
-			  				<button type="button" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Send Message</button>
+			  				<button type="button" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Envoyer !</button>
 			  			</div>
 
 					</div>

@@ -1,7 +1,7 @@
 <?php
 require('inc/inc.header.php');
 if(!$_SESSION['connexion']) {
-    header('location:../index_.php');
+    header('location:../index.php');
 }
     // Gestion des contenus de la Base de données
     $sql = $pdo->prepare("SELECT * FROM t_experiences WHERE utilisateur_id = '1'");
@@ -58,19 +58,28 @@ if(!$_SESSION['connexion']) {
                                 <th>Suppression</th>
                             </tr>
                             <tr>
-                        <?php while($ligne_experiences = $sql->fetch()) {  ?>
+                        <?php while($ligne_experiences = $sql->fetch()) :  ?>
                                 <td><?= $ligne_experiences['id_experience']; ?></td>
                                 <td><?= $ligne_experiences['e_titre']; ?></td>
                                 <td><?= $ligne_experiences['e_soustitre']; ?></td>
                                 <td><?= $ligne_experiences['e_dates']; ?></td>
                                 <td><?= $ligne_experiences['e_description']; ?></td>
-
-                                <td class="modif"><a href="modif_experience.php?id_experience=<?= $ligne_experiences['id_experience']; ?>">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></button></a></td>
-
-                                    <td class="supr"><a href="experiences.php?id_experience=<?= $ligne_experiences['id_experience']; ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
-                                </tr>
-                        <?php } ?>
+                                <td class="modif">
+                                    <a href="modif_experience.php?id_experience=<?= $ligne_experiences['id_experience']; ?>">
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                                <td class="supr">
+                                    <a href="experiences.php?id_experience=<?= $ligne_experiences['id_experience']; ?>">
+                                        <button type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
                         </table>
                     </div> <!-- ferme panel-body -->
                 </div>

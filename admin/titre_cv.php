@@ -35,12 +35,12 @@ require('inc/inc.header.php');
 
     } // ferme le if isset
 ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">Il y a  <?= $nbr_titre_cv; ?> Titres CV</div>
-    </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="panel panel-info">
+<div class="panel panel-default">
+    <div class="panel-heading">Il y a  <?= $nbr_titre_cv; ?> Titres CV</div>
+</div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-info">
                 <div class="panel-heading">Liste des Titres CV</div>
                     <div class="panel-body">
                         <table border="3" class="table table-bordered table-hover">
@@ -53,18 +53,27 @@ require('inc/inc.header.php');
                                 <th>Suppression</th>
                             </tr>
                             <tr>
-                        <?php while($ligne_titre_cv = $sql->fetch()) {  ?>
+                        <?php while($ligne_titre_cv = $sql->fetch()) :  ?>
                                 <td><?= $ligne_titre_cv['id_titre_cv']; ?></td>
                                 <td><?= $ligne_titre_cv['titre_cv']; ?></td>
                                 <td><?= $ligne_titre_cv['accroche']; ?></td>
                                 <td><?= $ligne_titre_cv['logo']; ?></td>
-
-                                <td class="modif"><a href="modif_titre_cv.php?id_titre_cv=<?= $ligne_titre_cv['id_titre_cv']; ?>">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></button></a></td>
-
-                                    <td class="supr"><a href="titre_cv.php?id_titre_cv=<?= $ligne_titre_cv['id_titre_cv']; ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
-                                </tr>
-                        <?php } ?>
+                                <td class="modif">
+                                    <a href="modif_titre_cv.php?id_titre_cv=<?= $ligne_titre_cv['id_titre_cv']; ?>">
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                                <td class="supr">
+                                    <a href="titre_cv.php?id_titre_cv=<?= $ligne_titre_cv['id_titre_cv']; ?>">
+                                        <button type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile ?>
                         </table>
                     </div> <!-- ferme panel-body -->
                 </div>
@@ -89,5 +98,5 @@ require('inc/inc.header.php');
                     </div>
                 </div>
             </div>
-</div>
+    </div>
 <?php require('inc/inc.footer.php');?>

@@ -26,9 +26,6 @@ if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a 
 				header('location:' . RACINE_CV . 'index.php');
 			}//ferme le if else
 }//ferme le if isset
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
 ?>
 <div class="container">
         <div class="row conexion">

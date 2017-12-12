@@ -1,7 +1,7 @@
 <?php
 require('inc/inc.header.php');
 if(!$_SESSION['connexion']) {
-    header('location:../index_.php');
+    header('location:../index.php');
 }
     // Gestion des contenus de la Base de données
     $sql = $pdo->prepare("SELECT * FROM t_competences WHERE utilisateur_id = '1' ");
@@ -42,7 +42,7 @@ if(!$_SESSION['connexion']) {
                                 <th>Suppression</th>
                             </tr>
                             <tr>
-                        <?php while($ligne_competences = $sql->fetch()) {  ?>
+                        <?php while($ligne_competences = $sql->fetch()) :  ?>
                                 <td><?= $ligne_competences['competence']; ?></td>
                                 <td><?= $ligne_competences['c_niveau']; ?></td>
 
@@ -51,7 +51,7 @@ if(!$_SESSION['connexion']) {
 
                                     <td class="supr"><a href="competences.php?id_competence=<?= $ligne_competences['id_competence']; ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
                                 </tr>
-                        <?php } ?>
+                        <?php endwhile ?>
                         </table>
                     </div> <!-- ferme panel-body -->
                 </div>

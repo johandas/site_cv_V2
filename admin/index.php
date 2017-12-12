@@ -1,7 +1,7 @@
 <?php
 require('inc/inc.header.php');
 if(!$_SESSION['connexion']) {
-    header('location:../index_.php');
+    header('location:../index.php');
 }
 if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a cliqué dessus)
 	$email = addslashes($_POST['email']);

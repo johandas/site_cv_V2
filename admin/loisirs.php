@@ -40,12 +40,24 @@ if(!$_SESSION['connexion']) {
                                 <th>Suppression</th>
                             </tr>
                         <tr>
-                    <?php while($ligne_loisir = $sql->fetch()) { ?>
+                    <?php while($ligne_loisir = $sql->fetch()) : ?>
                             <td><?= $ligne_loisir['loisirs']; ?></td>
-                            <td class = "modif"><a href="modif_loisirs.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></button></a></td>
-                            <td class = "supr"><a href="loisirs.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
+                            <td class = "modif">
+                                <a href="modif_loisirs.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>">
+                                    <button type="button" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </button>
+                                </a>
+                            </td>
+                            <td class = "supr">
+                                <a href="loisirs.php?id_loisir=<?= $ligne_loisir['id_loisir']; ?>">
+                                    <button type="button" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
-                    <?php } ?>
+                    <?php endwhile ?>
                 </table>
             </div>
             </div>

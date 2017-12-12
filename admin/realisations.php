@@ -56,7 +56,7 @@ require('inc/inc.header.php');
                                 <th>Suppression</th>
                             </tr>
                             <tr>
-                        <?php while($ligne_realisations = $sql->fetch()) {  ?>
+                        <?php while($ligne_realisations = $sql->fetch()) :  ?>
                                 <td><?= $ligne_realisations['id_realisation']; ?></td>
                                 <td><?= $ligne_realisations['r_titre']; ?></td>
                                 <td><?= $ligne_realisations['r_soustitre']; ?></td>
@@ -68,7 +68,7 @@ require('inc/inc.header.php');
 
                                     <td class="supr"><a href="realisations.php?id_realisation=<?= $ligne_realisations['id_realisation']; ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
                                 </tr>
-                        <?php } ?>
+                        <?php endwhile ?>
                         </table>
                     </div> <!-- ferme panel-body -->
                 </div>

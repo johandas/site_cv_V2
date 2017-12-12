@@ -1,8 +1,9 @@
 <?php
 require('inc/inc.header.php');
         if(!$_SESSION['connexion']) {
-            header('location:../index_.php');
+            header('location:../index.php');
         }
+        echo filemtime(__FILE__);
     // Gestion des contenus de la Base de données
     $sql = $pdo->prepare("SELECT * FROM t_formations WHERE utilisateur_id = '1'");
     $sql -> execute();
@@ -29,7 +30,6 @@ require('inc/inc.header.php');
             exit();
         } // ferme le if $_POST
     } // ferme le if isset du form
-
     // Suppression d'une formation
     if(isset($_GET['id_formation'])) { // on récupère la comp. par son id dans l'url
         $efface = $_GET['id_formation']; //  je mets cela dans une variable
@@ -39,12 +39,12 @@ require('inc/inc.header.php');
 
     } // ferme le if isset
 ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">Il y a  <?= $nbr_formations; ?> formations</div>
-    </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="panel panel-info">
+<div class="panel panel-default">
+    <div class="panel-heading">Il y a  <?= $nbr_formations; ?> formations</div>
+</div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-info">
                 <div class="panel-heading">Liste des formations</div>
                     <div class="panel-body">
                         <table border="3" class="table table-bordered table-hover">
@@ -58,25 +58,34 @@ require('inc/inc.header.php');
                                 <th>Suppression</th>
                             </tr>
                             <tr>
-                        <?php while($ligne_formations = $sql->fetch()) {  ?>
+                        <?php while($ligne_formations = $sql->fetch()) :  ?>
                                 <td><?= $ligne_formations['id_formation']; ?></td>
                                 <td><?= $ligne_formations['f_titre']; ?></td>
                                 <td><?= $ligne_formations['f_soustitre']; ?></td>
                                 <td><?= $ligne_formations['f_dates']; ?></td>
                                 <td><?= $ligne_formations['f_description']; ?></td>
-
-                                <td class="modif"><a href="modif_formation.php?id_formation=<?= $ligne_formations['id_formation']; ?>">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></button></a></td>
-
-                                    <td class="supr"><a href="formations.php?id_formation=<?= $ligne_formations['id_formation']; ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a></td>
-                                </tr>
-                        <?php } ?>
-                        </table>
-                    </div> <!-- ferme panel-body -->
-                </div>
+                                <td class="modif">
+                                    <a href="modif_formation.php?id_formation=<?= $ligne_formations['id_formation']; ?>">
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                                <td class="supr">
+                                    <a href="formations.php?id_formation=<?= $ligne_formations['id_formation']; ?>">
+                                        <button type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile ?>
+                    </table>
+                </div> <!-- ferme panel-body -->
             </div>
-            <div class="col-sm-4 col-lg4 text-justify">
-                <div class="panel panel-primary">
+        </div>
+        <div class="col-sm-4 col-lg4 text-justify">
+            <div class="panel panel-primary">
                 <div class=" panel panel-heading">Insertion d'une formation</div>
                     <div class="panel-body">
                         <form action="formations.php" method="post">
@@ -93,9 +102,9 @@ require('inc/inc.header.php');
                             <div class="form-group">
                                 <input type="submit" class="btn btn-success btn-block form-control" value="ajouté une formation">
                             </div>
-                        </form>
-                    </div>
+                      </form>
                 </div>
             </div>
-</div>
+        </div>
+    </div>
 <?php require('inc/inc.footer.php');?>

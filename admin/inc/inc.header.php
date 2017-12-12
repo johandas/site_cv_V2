@@ -49,7 +49,11 @@ $ligne_utilisateurs = $sql->fetch();
               <ul class="dropdown-menu">
                 <li><a href="<?php RACINE_CV ?>competences.php">Compétences</a></li>
                 <li><a href="<?php RACINE_CV ?>loisirs.php">Loisirs</a></li>
+<<<<<<< HEAD
                 <li><a href="<?php RACINE_CV ?>images.php">Images</a></li>
+=======
+                <li><a href="<?php RACINE_CV ?>reseaux.php">Réseaux</a></li>
+>>>>>>> d6fab46ddd8ce7e0dcf76b87176e5f66a5329320
               </ul>
             </li>
         </ul>

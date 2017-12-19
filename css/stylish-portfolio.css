@@ -77,8 +77,18 @@ h1,h3 {
     position : relative;
     bottom: 275px;
     font-size: 3em;
-    color :#FBF7F7;
 }
+#grostitre{
+   background-image: url(../img/light.webp);
+   background-size: cover;
+   color: transparent;
+   -moz-background-clip: text;
+   -webkit-background-clip: text;
+   text-transform: uppercase;
+   line-height: 70px;
+   margin: 10px 0;
+}
+
 .black-typo {
     color : black;
 }
@@ -295,8 +305,29 @@ h1,h3 {
 /* Footer */
 
 footer {
+    color : white;
+    background : #363333;
   /*padding-bottom : 50px;*/
 }
+.inputContact {
+    border-radius: 0%;
+    color : white;
+    background :#363333;
+
+}
+.inputContact:focus{
+    color : white;
+    background: rgba(16, 23, 28, 0.2);
+}
+
+.labelContact {
+    color: white;
+}
+span.error{
+    color: red;
+
+
+/************Fin Footer*************/
 
 #to-top {
   font-size: 1em;

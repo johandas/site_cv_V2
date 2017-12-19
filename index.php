@@ -58,8 +58,8 @@
     <!-- Header -->
     <header class="header" id="top">
       <div class="text-vertical-center">
-        <h1 class="title-cli">Johan Da Silva</h1>
-        <h3 class="title-cli">&lt;Développeur Web && Intégrateur/></h3>
+        <h1 class="title-cli" id="grostitre">Johan Da Silva</h1>
+        <h3 class="title-cli" id="grostitre">&lt;Développeur Web && Intégrateur/></h3>
         <br>
         <a href="#about" class="btn btn-about btn-lg js-scroll-trigger">En savoir plus</a>
       </div>
@@ -200,83 +200,113 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
       </div>
     </aside> -->
 
-    <!-- contact -->
-    <section id="contact">
+    <!-- footer  contact -->
 
-			<div class="contact-section">
-			<div class="container">
-				<form>
-					<div class="col-md-6 form-line">
-			  			<div class="form-group">
-			  				<label for="exampleInputUsername">Votre nom *</label>
-					    	<input type="text" class="form-control" id="nomForm" placeholder="Nom *">
-				  		</div>
-				  		<div class="form-group">
-					    	<label for="exampleInputEmail">Votre Email *</label>
-					    	<input type="email" class="form-control" id="emailForm" placeholder="Email *">
-					  	</div>
-					  	<div class="form-group">
-					    	<label for="telephone">Votre numéro de téléphone *</label>
-					    	<input type="tel" class="form-control" id="telephoneForm" placeholder="Téléphone *">
-			  			</div>
-			  		</div>
-			  		<div class="col-md-6">
-			  			<div class="form-group">
-			  				<label for ="description">Votre message</label>
-			  			 	<textarea  class="form-control" id="descriptionForm" placeholder="Message.. *"></textarea>
-			  			</div>
-			  			<div>
+    <?php
+    require('admin/contact.php');
+    if(!empty($_POST)) {
+        // On éclate le $_POST en tableau qui permet d'accéder directement aux champs par des variables
+        // On effectue une validation des données du formulaire et on vérifie la validité  de l'email
+        extract($_POST);
 
-			  				<button type="button" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Envoyer !</button>
-			  			</div>
+        $valid = (empty($co_nom) || empty($co_email) || !filter_var($co_email, FILTER_VALIDATE_EMAIL) || empty($co_sujet) || empty($co_message)) ? false : true;
 
-					</div>
-				</form>
-			</div>
-    </section>
+        $erreurnom = (empty($co_nom)) ? 'Indiquez votre Nom' : null;
+        $erreuremail = (empty($co_email) || !filter_var($co_email, FILTER_VALIDATE_EMAIL))  ? 'Indiquez votre Email' : null;
+        $erreursujet = (empty($co_sujet)) ? 'Indiquez votre Sujet' : null;
+        $erreurmessage = (empty($co_message)) ? 'Indiquez votre Message' : null;
+        // Si tous les champs sont correctement renseignés
+        if($valid) {
+            // On crée un nouvel objet (ou une instanciation) de la class Contact.class.php
+            $contact = new Contact();
+            // On utilise la méthode insetContact() pour insérer en BDD
+            $contact->insertContact($co_nom,$co_email,$co_sujet,$co_message);
+        }
+    }
+    ?>
+    <footer>
+		<div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-0">
+                    <form class="form"action="#" method="post">
+                        <div class="form-group">
+                            <label for="nom" class="labelContact">Nom :</label>
+                            <span class="error"><?php if(isset($erreurnom))  echo $erreurnom;  ?></span>
+                            <input type="text" name="co_nom" class="form-control inputContact" placeholder="Votre nom" value="<?php if(isset($co_nom)) echo $co_nom; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="labelContact">Email :</label>
+                            <span class="error"><?php if(isset($erreuremail))  echo $erreuremail;  ?></span>
+                            <input type="text" name="co_email"  class="form-control inputContact" placeholder="Votre email" value="<?php if(isset($co_email)) echo $co_email; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="sujet" class="labelContact">Sujet :</label>
+                            <span class="error"><?php if(isset($erreursujet))  echo $erreursujet;  ?></span>
+                            <input type="text" name="co_sujet" class="form-control inputContact" placeholder="Votre sujet" value="<?php if(isset($co_sujet)) echo $co_sujet; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="labelContact">Message :</label>
+                            <span class="error"><?php if(isset($erreurmessage))  echo $erreurmessage;  ?></span>
+                            <textarea type="text" name="co_message" class="form-control inputContact" cols="30" rows="10" placeholder="Votre message"><?php if(isset($co_message)) echo $co_message; ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-block btn-danger" name="submit" value="ready">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 col-md-offset-2 text-center">
+                    <h4>
+                      <strong>Contactez-moi !</strong>
+                    </h4>
+                    <p>
+                    </p>
+                    <ul class="list-unstyled">
+                        <li>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <a href="https://goo.gl/maps/r8XDdYhEAur">France, Colombes</a>
+                        </li>
+                      <li>
+                        <i class="fa fa-phone fa-fw"></i>
+                        07 81 53 04 28</li>
+                      <li>
+                        <i class="fa fa-envelope-o fa-fw"></i>
+                        <a href="mailto:name@example.com">johanmoreiradasilva@gmail.com</a>
+                      </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        <a href="#">
+                        <i class="fa fa-linkedin fa-fw fa-3x"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fa fa-github fa-fw fa-3x"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#">
+                             <i class="fa fa-twitter fa-fw fa-3x"></i>
+                        </a>
+                      </li>
+
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Johan Da Silva,  2017</p>
+                  </div>
+                </div>
+              </div>
+              <a id="to-top" href="#top" class="btn btn-dark btn-lg js-scroll-trigger">
+                <i class="fa fa-chevron-up fa-fw fa-1x"></i>
+              </a>
+         </div>
+        </div>
+	    </div>
+</footer>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto text-center">
-            <h4>
-              <strong>Contactez-moi !</strong>
-            </h4>
-            <p>
-              <br>Colombes, 92700</p>
-            <ul class="list-unstyled">
-              <li>
-                <i class="fa fa-phone fa-fw"></i>
-                07 . 81 . 53 . 04 . 28</li>
-              <li>
-                <i class="fa fa-envelope-o fa-fw"></i>
-                <a href="mailto:name@example.com">johanmoreiradasilva@gmail.com</a>
-              </li>
-            </ul>
-            <br>
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="#">
-                <i class="fa fa-linkedin fa-fw fa-3x"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                    <i class="fa fa-github fa-fw fa-3x"></i>
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-            </ul>
-            <hr class="small">
-            <p class="text-muted">Copyright &copy; Johan Da Silva,  2017</p>
-          </div>
-        </div>
-      </div>
-      <a id="to-top" href="#top" class="btn btn-dark btn-lg js-scroll-trigger">
-        <i class="fa fa-chevron-up fa-fw fa-1x"></i>
-      </a>
-    </footer>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

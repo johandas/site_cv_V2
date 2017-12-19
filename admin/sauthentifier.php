@@ -60,7 +60,7 @@ if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a 
                             </div>
                              <div class="col-md-offset-0">
                                  <small id="mdplost" class="form-text text-muted">
-                                     <a href="#">Mot de passe oublié ?</a>
+                                     <a href="recuperation.php">Mot de passe oublié ?</a>
                                  </small>
                             </div>
                              <div class="col-md-offset-0">

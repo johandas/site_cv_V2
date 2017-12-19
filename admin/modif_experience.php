@@ -6,7 +6,7 @@ require('inc/inc.header.php');
         $e_soustitre    = addslashes($_POST['e_soustitre']);
         $e_dates        = addslashes($_POST['e_dates']);
         $e_description  = addslashes($_POST['e_description']);
-        $id_experience   = addslashes($_POST['id_experience']);
+        $id_experience  = addslashes($_POST['id_experience']);
 
         $pdo->exec("UPDATE t_experiences SET e_titre = '$e_titre', e_soustitre = '$e_soustitre', e_dates = '$e_dates', e_description = '$e_description' WHERE id_experience = '$id_experience'");
          header('location:experiences.php');

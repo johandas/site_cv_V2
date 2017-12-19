@@ -38,11 +38,11 @@ if(isset($_POST['upload'])) {
      }
     if(empty($msg)) {
         $resultat = $pdo->prepare("INSERT INTO t_images (photo, i_nom) VALUES (:photo , :i_nom)");
-        $resultat->bindParam(':i_nom', $_POST['i_nom'], PDO::PARAM_STR);
+        $resultat->bindParam(':i_nom', $imageNewName, PDO::PARAM_STR);
         $resultat->bindParam(':photo', $imageNewName , PDO::PARAM_STR);
-        if($resultat->execute()) {
-            header('location:images.php');
-        }
+            if($resultat->execute()) {
+                header('location:images.php');
+            }
     }
 }
 if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'url
@@ -63,52 +63,34 @@ if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'ur
                 <div class="panel-body">
                     <table border="3" class="table table-bordered table-hover">
                         <tr>
-<<<<<<< HEAD
                             <th># ID</th>
+                            <th>Apperçu</th>
                             <th>Image</th>
                             <th>Nom</th>
-=======
-                            <th>Images</th>
-                            <th>Nom</th>
-                            <th>Sous-titre</th>
->>>>>>> d6fab46ddd8ce7e0dcf76b87176e5f66a5329320
                             <th>Modification</th>
                             <th>Suppression</th>
                         </tr>
-                        <tr>
-<<<<<<< HEAD
-                    <?php while($ligne_image = $sql->fetch()) : ?>
-                            <td><?= $ligne_image['id_images'] ?></td>
-                            <td><img src="<?= RACINE_CV ?>img/<?= $ligne_image['photo'] ?>" height="100px"></td>
-                            <td><?= $ligne_image['i_nom'] ?></td>
-                            <td class="modif">
-                                <a href="images.php?id_images=<?= $ligne_image['id_images'] ?>">
-=======
-                    <?php while($ligne_images = $sql->fetch()) :  ?>
-                            <td><?= $ligne_images['photo']; ?></td>
-                            <td><?= $ligne_images['nom']; ?></td>
-                            <td><?= $ligne_images['sous_titre']; ?></td>
-                            <td class="modif">
-                                <a href="images.php?id_photos=<?= $ligne_images['id_photos']; ?>">
->>>>>>> d6fab46ddd8ce7e0dcf76b87176e5f66a5329320
-                                    <button type="button" class="btn btn-success">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    </button>
-                                </a>
-                            </td>
-                            <td class="supr">
-<<<<<<< HEAD
-                                <a href="images.php?id_images=<?= $ligne_image['id_images'] ?>">
-=======
-                                <a href="images.php?id_photos=<?= $ligne_images['id_photos']; ?>">
->>>>>>> d6fab46ddd8ce7e0dcf76b87176e5f66a5329320
-                                    <button type="button" class="btn btn-danger">
-                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
+                        <?php while($ligne_images = $sql->fetch()) :  ?>
+                                <td><?= $ligne_images['id_images']; ?></td>
+                                <td><img src="<?= RACINE_CV . 'img/' . $ligne_images['photo']; ?>" height="60" width="60"/></td>
+                                <td><?= $ligne_images['photo']; ?></td>
+                                <td><?= $ligne_images['i_nom']; ?></td>
+                                <td class="modif">
+                                    <a href="modif_images.php?id_images=<?= $ligne_images['id_images']; ?>">
+                                        <button type="button" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                                <td class="supr">
+                                    <a href="images.php?id_images=<?= $ligne_images['id_images']; ?>">
+                                        <button type="button" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile ?>
                     </table>
                 </div> <!-- ferme panel-body -->
             </div>
@@ -116,29 +98,18 @@ if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'ur
         <div class="col-sm-4 col-lg4 text-justify">
             <div class="panel panel-primary">
             <div class=" panel panel-heading">Insertion d'une image</div>
-<<<<<<< HEAD
-            <?= $msg; ?>
+        <?= $msg; ?>
                 <div class="panel-body">
                     <form action="#" method="POST" enctype="multipart/form-data">
-=======
                 <div class="panel-body">
                     <form action="images.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="id_photo" value="<?= $ligne_images['id_photo'] ?>">
->>>>>>> d6fab46ddd8ce7e0dcf76b87176e5f66a5329320
                         <div class="form-group">
                             <input id="photos" name="photo" type="file" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Nom</label>
-<<<<<<< HEAD
-                            <input id="nom" name="i_nom" class="form-control" type="text" value="" placeholder="Inserer une légende">
-=======
-                            <input id="nom" name="nom" class="form-control" type="text" value="<?=$ligne_images['id_photo']?>" placeholder="Inserer une légende">
-                        </div>
-                        <div class="form-group">
-                            <label>Sous-Titre</label>
-                            <input id="sous-titre" name="sous-titre" class="form-control" type="text" value="<?=$ligne_images['sous_titre']?>" placeholder="Inserer une légende">
->>>>>>> d6fab46ddd8ce7e0dcf76b87176e5f66a5329320
+                            <input id="nom" name="nom" class="form-control" type="text" value="<?=$ligne_images['i_nom']?>" placeholder="Inserer une légende">
                         </div>
                         <div class="form-group">
                             <input type="submit" name="upload" class="btn btn-success btn-block form-control" value="Ajouté une image">

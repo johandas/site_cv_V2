@@ -1,3 +1,6 @@
+<?php
+require('inc/connexion.php');
+$sql = $pdo->query("SELECT * FROM t_images");?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -5,8 +8,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Développeur et intégrateur web. En recherche de stage !">
-    <meta name="author" content="">
+    <meta name="description" content="Développeur et intégrateur web junior. En recherche de stage !">
+    <meta name="author" lang="fr" content="Johan DA SILVA">
+    <meta name="keywords" lang="fr" content="développeur, intégrateur, javascript, php, html, css, wordpress, bootstrap">
 
     <title>Site - </title>
 
@@ -23,7 +27,7 @@
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
-
+    <link rel="icon" href="img/favicon.ico" />
   </head>
 
   <body>
@@ -137,11 +141,6 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
       </div>
       <!-- /.container -->
     </section>
-    <div class="social col-md-6">
-         <a href="https://www.linkedin.com/in/johan-da-silva-252586145/" class="link linkdin" target="_blank"><span class="fa fa-linkedin-square"></span></a>
-         <a href="https://github.com/johandas" class="link github" target="_blank"><span class="fa fa-github"></span></a>
-         <a href="" class="link google-plus" target="_blank"><span class="fa fa-google-plus-square"></span></a>
-       </div>
 
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio" style="background:#F1F1F1">
@@ -228,39 +227,47 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
 		<div class="container">
             <div class="row">
                 <div class="col-md-6 offset-0">
-                    <form class="form"action="#" method="post">
-                        <div class="form-group">
-                            <label for="nom" class="labelContact">Nom :</label>
-                            <span class="error"><?php if(isset($erreurnom))  echo $erreurnom;  ?></span>
-                            <input type="text" name="co_nom" class="form-control inputContact" placeholder="Votre nom" value="<?php if(isset($co_nom)) echo $co_nom; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="labelContact">Email :</label>
-                            <span class="error"><?php if(isset($erreuremail))  echo $erreuremail;  ?></span>
-                            <input type="text" name="co_email"  class="form-control inputContact" placeholder="Votre email" value="<?php if(isset($co_email)) echo $co_email; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="sujet" class="labelContact">Sujet :</label>
-                            <span class="error"><?php if(isset($erreursujet))  echo $erreursujet;  ?></span>
-                            <input type="text" name="co_sujet" class="form-control inputContact" placeholder="Votre sujet" value="<?php if(isset($co_sujet)) echo $co_sujet; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="labelContact">Message :</label>
-                            <span class="error"><?php if(isset($erreurmessage))  echo $erreurmessage;  ?></span>
-                            <textarea type="text" name="co_message" class="form-control inputContact" cols="30" rows="10" placeholder="Votre message"><?php if(isset($co_message)) echo $co_message; ?></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-block btn-danger" name="submit" value="ready">
-                        </div>
-                    </form>
+                    <div class="formulaire-contact">
+                        <form class="form"action="#" method="post">
+                            <div class="form-group">
+                                <label for="nom" class="labelContact">Nom :</label>
+                                <span class="error"><?php if(isset($erreurnom))  echo $erreurnom;  ?></span>
+                                <input type="text" name="co_nom" class="form-control inputContact" placeholder="Votre nom" value="<?php if(isset($co_nom)) echo $co_nom; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="labelContact">Email :</label>
+                                <span class="error"><?php if(isset($erreuremail))  echo $erreuremail;  ?></span>
+                                <input type="text" name="co_email"  class="form-control inputContact" placeholder="Votre email" value="<?php if(isset($co_email)) echo $co_email; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="sujet" class="labelContact">Sujet :</label>
+                                <span class="error"><?php if(isset($erreursujet))  echo $erreursujet;  ?></span>
+                                <input type="text" name="co_sujet" class="form-control inputContact" placeholder="Votre sujet" value="<?php if(isset($co_sujet)) echo $co_sujet; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="labelContact">Message :</label>
+                                <span class="error"><?php if(isset($erreurmessage))  echo $erreurmessage;  ?></span>
+                                <textarea type="text" name="co_message" class="form-control inputContact" cols="30" rows="10" placeholder="Votre message"><?php if(isset($co_message)) echo $co_message; ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-block btn-danger" name="submit" value="ready">
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-md-6 col-md-offset-2 text-center">
-                    <h4>
-                      <strong>Contactez-moi !</strong>
-                    </h4>
-                    <p>
-                    </p>
+                        <div class="contactez">
+                            <h4>
+                              <strong>Contactez-moi !</strong>
+                            </h4>
+
+
                     <ul class="list-unstyled">
+                        <li>
+                            <a href="#" class="thumbnail ">
+                                <img class="photo-profil" src="img/mev2.jpg" width="150" height="150" alt="...">
+                            </a>
+                        </li>
                         <li>
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                             <a href="https://goo.gl/maps/r8XDdYhEAur">France, Colombes</a>
@@ -296,7 +303,9 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
                     <p class="text-muted">Copyright &copy; Johan Da Silva,  2017</p>
                   </div>
                 </div>
+                </div>
               </div>
+
               <a id="to-top" href="#top" class="btn btn-dark btn-lg js-scroll-trigger">
                 <i class="fa fa-chevron-up fa-fw fa-1x"></i>
               </a>

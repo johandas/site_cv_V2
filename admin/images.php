@@ -5,10 +5,11 @@ if(!$_SESSION['connexion']) {
     header('location:../index.php');
 }
 $sql = $pdo->query("SELECT * FROM t_images");
-$ligne_image = $sql->fetch();
 $nbr_loisirs = $sql->rowCount();
 
+// Vérification pour le traitement des images
 if(isset($_POST['upload'])) {
+    // Déclaration des variables pour le traitement des images
     $image = $_FILES['photo'];
     $imageName = $_FILES['photo']['name'];
     $imageTmpName = $_FILES['photo']['tmp_name'];
@@ -26,7 +27,7 @@ if(isset($_POST['upload'])) {
                 $imageNewName = uniqid('', true) . "." . $imageActuelleExt;
                 $imageDestination = 'img/' . $imageNewName;
                 move_uploaded_file($imageTmpName, $imageDestination);
-                // header('location:images.php');
+                 header('location:images.php');
             } else {
                 $msg .= '<div class="alert alert-danger">Veuillez insérer une image inférieur ou égale a 1/mo</div>';
             }
@@ -36,15 +37,17 @@ if(isset($_POST['upload'])) {
      } else {
         $msg .= '<div class="alert alert-danger">Vous ne pouvez pas enregistré ce type d\'image</div>';
      }
+     // Si il y a pas de message d'erreur alors j'enregistre en BDD
     if(empty($msg)) {
         $resultat = $pdo->prepare("INSERT INTO t_images (photo, i_nom) VALUES (:photo , :i_nom)");
-        $resultat->bindParam(':i_nom', $imageNewName, PDO::PARAM_STR);
+        $resultat->bindParam(':i_nom', $_POST['i_nom'], PDO::PARAM_STR);
         $resultat->bindParam(':photo', $imageNewName , PDO::PARAM_STR);
             if($resultat->execute()) {
-                header('location:images.php');
+                header('location: images.php');
             }
     }
 }
+// Vérification pour la supression de l'image
 if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'url
     $efface = $_GET['id_images']; //  je mets cela dans une variable
     $sql = (" DELETE FROM t_images WHERE id_images = '$efface'");
@@ -61,11 +64,11 @@ if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'ur
             <div class="panel panel-info">
             <div class="panel-heading">Liste des images</div>
                 <div class="panel-body">
+                    <!-- Affichage des images  -->
                     <table border="3" class="table table-bordered table-hover">
                         <tr>
                             <th># ID</th>
                             <th>Apperçu</th>
-                            <th>Image</th>
                             <th>Nom</th>
                             <th>Modification</th>
                             <th>Suppression</th>
@@ -73,7 +76,6 @@ if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'ur
                         <?php while($ligne_images = $sql->fetch()) :  ?>
                                 <td><?= $ligne_images['id_images']; ?></td>
                                 <td><img src="<?= RACINE_CV . 'img/' . $ligne_images['photo']; ?>" height="60" width="60"/></td>
-                                <td><?= $ligne_images['photo']; ?></td>
                                 <td><?= $ligne_images['i_nom']; ?></td>
                                 <td class="modif">
                                     <a href="modif_images.php?id_images=<?= $ligne_images['id_images']; ?>">
@@ -109,7 +111,7 @@ if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'ur
                         </div>
                         <div class="form-group">
                             <label>Nom</label>
-                            <input id="nom" name="nom" class="form-control" type="text" value="<?=$ligne_images['i_nom']?>" placeholder="Inserer une légende">
+                            <input id="nom" name="i_nom" class="form-control" type="text" value="<?=$ligne_images['i_nom']?>" placeholder="Inserer une légende">
                         </div>
                         <div class="form-group">
                             <input type="submit" name="upload" class="btn btn-success btn-block form-control" value="Ajouté une image">

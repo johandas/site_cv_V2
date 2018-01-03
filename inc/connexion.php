@@ -10,3 +10,4 @@ $msg = '';
 $pdo = new PDO('mysql:host=' . $hote . ';dbname=' . $bdd, $utilisateur, $mdp, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
 define('URL', 'http://localhost/site_cv_V2bis/');
+define('RACINE_FRONT', '/site_cv_V2bis/img');

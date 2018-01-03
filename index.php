@@ -1,18 +1,27 @@
 <?php
 require('inc/connexion.php');
-$sql = $pdo->query("SELECT * FROM t_images");?>
+$sql = $pdo->prepare("SELECT * FROM t_images");
+$sql->execute();
+$ligne_images = $sql->fetch();
+$sql = $pdo->prepare("SELECT * FROM t_titre_cv");
+$sql->execute();
+$ligne_titre_cv = $sql->fetch();
+
+$sql = $pdo->prepare("SELECT * FROM t_formations");
+$sql->execute();
+$ligne_formation = $sql->fetch();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Développeur et intégrateur web junior. En recherche de stage !">
     <meta name="author" lang="fr" content="Johan DA SILVA">
     <meta name="keywords" lang="fr" content="développeur, intégrateur, javascript, php, html, css, wordpress, bootstrap">
 
-    <title>Site - </title>
+    <title>Johan Da Silva - Développeur & Intégrateur web</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -62,8 +71,8 @@ $sql = $pdo->query("SELECT * FROM t_images");?>
     <!-- Header -->
     <header class="header" id="top">
       <div class="text-vertical-center">
-        <h1 class="title-cli" id="grostitre">Johan Da Silva</h1>
-        <h3 class="title-cli" id="grostitre">&lt;Développeur Web && Intégrateur/></h3>
+        <h1 class="title-cli" id="grostitre"><?= $ligne_titre_cv['titre_cv']; ?></h1>
+        <h3 class="title-cli" id="grostitre"><?=  $ligne_titre_cv['accroche']; ?></h3>
         <br>
         <a href="#about" class="btn btn-about btn-lg js-scroll-trigger">En savoir plus</a>
       </div>
@@ -72,13 +81,9 @@ $sql = $pdo->query("SELECT * FROM t_images");?>
     <!-- About -->
     <section id="about" class="about" style="background:#F1F1F1">
       <div class="container text-center">
-        <h2>Expériences et formations</h2>
-        <p class="lead">Développeur web & Intégrateur curieux, autonome, rigoureux, j'aime les applications simples, rapides et efficaces.
-
-Un sens de l'écoute et du service renforcé par quelques mois d'expériences à travailler sur des projets variés, une expertise technique en constante progression grâce à une formation perpétuelle. Motivé par le besoin de faire toujours mieux et appuyé par de solides bases acquises lors de mon parcours, je prend plaisir à relever de nouveaux challenges.
-
-Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets atypiques afin de rendre le web meilleur
-          <a target="_blank" href="http://lepoles.org/">Le pôle solidaire et social</a>.</p>
+        <h2><?=$ligne_formation['f_titre'];?></h2>
+        <p class="lead"><?=$ligne_formation['f_description'];?>
+          <a target="_blank" href="<?=$ligne_formation['f_description'];?>">Le pôle solidaire et social</a>.</p>
       </div>
       <!-- /.container -->
     </section>
@@ -91,12 +96,14 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
             <h2>Mes compétences</h2>
             <hr class="small">
             <div class="row">
-      <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="https://fr.wikipedia.org/wiki/Hypertext_Markup_Language" class="thumbnail">
-          <img class="skill" src="img/htmlrond.png" alt="HTML5">
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 service-item">
+    <?php while($ligne_images = $sql->fetch()) : ?>
+            <div class="col-md-3 col-sm-6 service-item">
+                <a target="_blank" href="#" class="thumbnail">
+              <img class="skill" src="<img src="<?= RACINE_FRONT . $ligne_images['photo']; ?> alt="">
+                </a>
+            </div>
+    <?php endwhile;?>
+      <!-- <div class="col-md-3 col-sm-6 service-item">
         <a target="_blank" href="https://fr.wikipedia.org/wiki/Feuilles_de_style_en_cascade" class="thumbnail">
           <img class="skill" src="img/css3.svg" alt="CSS3">
         </a>
@@ -130,7 +137,7 @@ Actuellement en stage , je m'épanoui avec l'équipe du Pole S sur des projets a
         <a target="_blank" href="https://fr.wikipedia.org/wiki/MySQL" class="thumbnail">
           <img class="skill" src="img/mysql.png" alt="Mysql">
         </a>
-      </div>
+      </div> -->
 
             </div>
             <!-- /.row (nested) -->

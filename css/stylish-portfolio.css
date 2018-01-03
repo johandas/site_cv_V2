@@ -327,3 +327,24 @@ span.error{
   display: none;
   padding: 15px 20px;
 }
+
+/**responsive**/
+@media screen and (min-width: 200px) and (max-width: 640px) {
+  h1, h3 {
+      position: relative;
+      bottom:  70px;
+      font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 640px) {
+    .btn-about {
+         color : #FBF7F7;
+         position : relative;
+         top : 30px;
+         color :#;
+         border: none;
+         border-radius: 0;
+         background : none;
+     }
+}

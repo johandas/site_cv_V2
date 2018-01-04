@@ -1,15 +1,17 @@
 <?php
 require('inc/connexion.php');
-$sql = $pdo->prepare("SELECT * FROM t_images");
-$sql->execute();
-$ligne_images = $sql->fetch();
-$sql = $pdo->prepare("SELECT * FROM t_titre_cv");
-$sql->execute();
+
+$sql = $pdo->query("SELECT * FROM t_images");
+$ligne_images = $sql->fetchAll();
+
+$sql = $pdo->query("SELECT * FROM t_titre_cv");
 $ligne_titre_cv = $sql->fetch();
 
-$sql = $pdo->prepare("SELECT * FROM t_formations");
-$sql->execute();
+$sql = $pdo->query("SELECT * FROM t_formations");
 $ligne_formation = $sql->fetch();
+
+$sql = $pdo->query("SELECT * FROM t_utilisateurs");
+$ligne_utilisateurs = $sql->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -67,7 +69,7 @@ $ligne_formation = $sql->fetch();
         </li>
       </ul>
     </nav>
-
+    <!-- /. Navigation -->
     <!-- Header -->
     <header class="header" id="top">
       <div class="text-vertical-center">
@@ -77,7 +79,7 @@ $ligne_formation = $sql->fetch();
         <a href="#about" class="btn btn-about btn-lg js-scroll-trigger">En savoir plus</a>
       </div>
     </header>
-
+    <!-- /.Header -->
     <!-- About -->
     <section id="about" class="about" style="background:#F1F1F1">
       <div class="container text-center">
@@ -96,49 +98,14 @@ $ligne_formation = $sql->fetch();
             <h2>Mes compétences</h2>
             <hr class="small">
             <div class="row">
-    <?php while($ligne_images = $sql->fetch()) : ?>
-            <div class="col-md-3 col-sm-6 service-item">
-                <a target="_blank" href="#" class="thumbnail">
-              <img class="skill" src="<img src="<?= RACINE_FRONT . $ligne_images['photo']; ?> alt="">
-                </a>
-            </div>
-    <?php endwhile;?>
-      <!-- <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="https://fr.wikipedia.org/wiki/Feuilles_de_style_en_cascade" class="thumbnail">
-          <img class="skill" src="img/css3.svg" alt="CSS3">
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="https://fr.wikipedia.org/wiki/Bootstrap_(framework)" class="thumbnail">
-          <img class="skill" src="img/bootstrap.png" alt="bootstrap">
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="https://fr.wikipedia.org/wiki/PHP" class="thumbnail">
-          <img class="skill" src="img/php.png" alt="php">
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="http://www.adobe.com/fr/products/photoshop.html" class="thumbnail">
-          <img class="skill" src="img/phototest.png" alt="photoshop">
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="https://fr.wikipedia.org/wiki/JavaScript" class="thumbnail">
-          <img class="skill" src="img/js.png" alt="javascript">
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="https://fr.wordpress.org/" class="thumbnail">
-          <img class="skill" src="img/wordpress.png" alt="Wordpress">
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 service-item">
-        <a target="_blank" href="https://fr.wikipedia.org/wiki/MySQL" class="thumbnail">
-          <img class="skill" src="img/mysql.png" alt="Mysql">
-        </a>
-      </div> -->
-
+    <?php foreach($ligne_images as $ligne_image) : ?>
+                <div class="col-md-3 col-sm-6 service-item">
+                    <a target="_blank" href="#" class="thumbnail">
+                        <img class="skill" src="admin/img/<?=  $ligne_image['photo']; ?>" alt="<?=$ligne_image['i_nom']?>">
+                    </a>
+                </div>
+                <!-- /.col-md3 -->
+    <?php endforeach;?>
             </div>
             <!-- /.row (nested) -->
           </div>
@@ -166,26 +133,11 @@ $ligne_formation = $sql->fetch();
               </div>
               <div class="col-md-6">
                 <div class="portfolio-item">
-                  <a href="http://www.matcherunbien.com/">
-                    <img class="img-portfolio img-fluid" src="img/work.png">
+                  <a href="#">
+                    <img class="img-portfolio img-fluid" src="img/work2.png">
                   </a>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="http://www.matcherunbien.com/">
-                    <img class="img-portfolio img-fluid" src="img/work.png">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="http://www.matcherunbien.com/">
-                    <img class="img-portfolio img-fluid" src="img/work.png">
-                  </a>
-                </div>
-              </div>
-
             </div>
             <!-- /.row (nested) -->
             <!-- <a href="#" class="btn btn-dark">View More Items</a> -->
@@ -233,7 +185,15 @@ $ligne_formation = $sql->fetch();
     <footer>
 		<div class="container">
             <div class="row">
+                <div class="col-md-12 text-center">
+                    <h4>
+                      <strong>Contactez-moi ou télécharger mon CV !</strong>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6 offset-0">
+
                     <div class="formulaire-contact">
                         <form class="form"action="#" method="post">
                             <div class="form-group">
@@ -264,10 +224,8 @@ $ligne_formation = $sql->fetch();
                 </div>
                 <div class="col-md-6 col-md-offset-2 text-center">
                         <div class="contactez">
-                            <h4>
-                              <strong>Contactez-moi !</strong>
-                            </h4>
 
+                            <button id="cv"  type="button"><a href="img/cv_da_silva.pdf" target="_blank">Télécharger mon CV !</a></button>
 
                     <ul class="list-unstyled">
                         <li>
@@ -277,14 +235,14 @@ $ligne_formation = $sql->fetch();
                         </li>
                         <li>
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <a href="https://goo.gl/maps/r8XDdYhEAur">France, Colombes</a>
+                            <a href="https://goo.gl/maps/r8XDdYhEAur"><?= $ligne_utilisateurs['pays'] . ', ' . $ligne_utilisateurs['ville'] ?></a>
                         </li>
-                      <li>
+                      <li class="phone">
                         <i class="fa fa-phone fa-fw"></i>
-                        07 81 53 04 28</li>
+                        <?= $ligne_utilisateurs['telephone']?></li>
                       <li>
                         <i class="fa fa-envelope-o fa-fw"></i>
-                        <a href="mailto:name@example.com">johanmoreiradasilva@gmail.com</a>
+                        <a href="mailto:name@example.com"> <?= $ligne_utilisateurs['email'] ?></a>
                       </li>
                     </ul>
                     <br>
@@ -307,7 +265,7 @@ $ligne_formation = $sql->fetch();
 
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Johan Da Silva,  2017</p>
+                    <p class="text-muted">Copyright &copy; <?= $ligne_utilisateurs['prenom'] . ', ' . $ligne_utilisateurs['nom'] . ' ' . 2017 . ' - ' . date('Y') ?></p>
                   </div>
                 </div>
                 </div>

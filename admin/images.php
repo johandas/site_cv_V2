@@ -20,7 +20,7 @@ if(isset($_POST['upload'])) {
     $imageExt = explode('.', $imageName);
     $imageActuelleExt = strtolower(end($imageExt));
 
-    $imageValid = array('jpg', 'jpeg', 'png', 'pdf');
+    $imageValid = array('jpg', 'jpeg', 'png', 'pdf', 'svg');
     if (in_array($imageActuelleExt, $imageValid )) {
         if ($imageError === 0) {
             if ($imageSize < 1000000) {
@@ -50,8 +50,8 @@ if(isset($_POST['upload'])) {
 // Vérification pour la supression de l'image
 if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'url
     $efface = $_GET['id_images']; //  je mets cela dans une variable
-    $sql = (" DELETE FROM t_images WHERE id_images = '$efface'");
-    $pdo->query($sql); // on peut avec exec aussi si on veut
+    $sqlDelete = (" DELETE FROM t_images WHERE id_images = '$efface'");
+    $pdo->query($sqlDelete); // on peut avec exec aussi si on veut
     header('location:images.php'); // pour revenir sur la page
 
 } // ferme le if isset
@@ -75,7 +75,7 @@ if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'ur
                         </tr>
                         <?php while($ligne_images = $sql->fetch()) :  ?>
                                 <td><?= $ligne_images['id_images']; ?></td>
-                                <td><img src="<?= RACINE_CV . 'img/' . $ligne_images['photo']; ?>" height="60" width="60"/></td>
+                                <td><img src="<?= 'img/' . $ligne_images['photo']; ?>" height="60" width="60"/></td>
                                 <td><?= $ligne_images['i_nom']; ?></td>
                                 <td class="modif">
                                     <a href="modif_images.php?id_images=<?= $ligne_images['id_images']; ?>">

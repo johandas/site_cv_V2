@@ -50,6 +50,7 @@ $ligne_utilisateurs = $sql->fetch();
                 <li><a href="<?php RACINE_CV ?>competences.php">Compétences</a></li>
                 <li><a href="<?php RACINE_CV ?>loisirs.php">Loisirs</a></li>
                 <li><a href="<?php RACINE_CV ?>images.php">Images</a></li>
+                <li><a href="<?php RACINE_CV ?>commentaires.php">Messagerie</a></li>
               </ul>
             </li>
         </ul>

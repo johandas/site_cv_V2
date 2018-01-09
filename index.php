@@ -21,7 +21,7 @@ $ligne_utilisateurs = $sql->fetch();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Développeur et intégrateur web junior. En recherche de stage !">
     <meta name="author" lang="fr" content="Johan DA SILVA">
-    <meta name="keywords" lang="fr" content="développeur, intégrateur, javascript, php, html, css, wordpress, bootstrap">
+    <meta name="keywords" lang="fr" content="développeur, intégrateur, javascript, php, html, css, wordpress, bootstrap, mysql, base de donnée, internet, web, design, graphisme , jeux vidéo ">
 
     <title>Johan Da Silva - Développeur & Intégrateur web</title>
 

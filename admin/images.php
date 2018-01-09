@@ -68,7 +68,7 @@ if(isset($_GET['id_images'])) { // on récupère le loisir. par son id dans l'ur
                     <table border="3" class="table table-bordered table-hover">
                         <tr>
                             <th># ID</th>
-                            <th>Apperçu</th>
+                            <th>Miniature</th>
                             <th>Nom</th>
                             <th>Modification</th>
                             <th>Suppression</th>

@@ -24,3 +24,12 @@
    line-height: 70px;
    margin: 10px 0;
 }
+.hoover-comment:hover {
+    text-decoration: none;
+    color : white;
+    background : rgba(225, 22, 30 , 0.8);
+    transition : .5s ease-in-out;
+}
+#supr-comment {
+    text-decoration: none;
+}

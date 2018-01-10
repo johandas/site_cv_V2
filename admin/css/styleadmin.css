@@ -1,7 +1,9 @@
 @charset "UTF-8";
 /*CSS Document admin Johan*/
 
-
+body {
+    background : rgba(0,0,0,0.2);
+}
 /*DEBUT DE LA NAV*/
 .navbar {
     /*background: #840404;*/

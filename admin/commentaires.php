@@ -4,7 +4,7 @@ if(!$_SESSION['connexion']) {
     header('location:../index.php');
 }
 $sql = $pdo->query("SELECT * FROM t_commentaires ORDER BY id_commentaire DESC");
-$nbr_formations = $sql->rowCount();
+$nbr_commentaires = $sql->rowCount();
 if(isset($_GET['id_commentaire'])) { // on récupère le loisir. par son id dans l'url
     $efface = $_GET['id_commentaire']; //  je mets cela dans une variable
     $sqlDelete = (" DELETE FROM t_commentaires WHERE id_commentaire = '$efface'");
@@ -13,8 +13,10 @@ if(isset($_GET['id_commentaire'])) { // on récupère le loisir. par son id dans
 
 } // ferme le if isset
 ?>
-<div class="row">
-    <div class="well">Vous avez <?= $nbr_formations ?> messages</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Vous avez <?= $nbr_commentaires ?> messages</div>
+    </div>
+    <div class="row">
     <?php while($ligne_commentaires = $sql->fetch()) : ?>
         <div style="margin: 30px 0px;">
             <div class="col-md-4">
@@ -41,7 +43,7 @@ if(isset($_GET['id_commentaire'])) { // on récupère le loisir. par son id dans
             <div class="row">
                 <div class="col-md-4 ">
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" style="box-sizing:border-box;">
                             <?= '<b>Message</b> :<br><br>'.  $ligne_commentaires['co_message'] .'<br>' ?>
                         </li>
                     </ul>

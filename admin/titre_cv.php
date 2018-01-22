@@ -1,5 +1,9 @@
 <?php
 require('inc/inc.header.php');
+if(!$_SESSION['connexion']) {
+    header('location:../index_.php');
+    exit();
+}
     // Gestion des contenus de la Base de données
     $sql = $pdo->prepare("SELECT * FROM t_titre_cv");
     $sql -> execute();

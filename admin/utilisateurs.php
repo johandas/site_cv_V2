@@ -21,7 +21,7 @@ if (isset($_GET['id_utilisateur'])) { // on récupère la comp. par son id dans 
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-sm-offset-2">
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="margin-top:100px;">
             <div class="panel-heading">
                 <b>Informations de <?= $ligne_utilisateur['prenom'] . ', ' . $ligne_utilisateur['nom']; ?></b>
             </div>

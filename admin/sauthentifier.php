@@ -1,9 +1,9 @@
-<?php require('inc/inc.header.php');
+<?php require('inc/inc.init.php');
 
 if(isset($_GET['action']) && $_GET['action'] == 'deconnexion') { // si une action est demandé dans l'URL et que cette action est "déconnexion" alors on procède à la  déconnexion.
     unset($_SESSION['connexion']);
 	session_destroy();
-  header('location:../index_.php');
+  header('location:../index.php');
 }
 
 if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a cliqué dessus)
@@ -23,15 +23,35 @@ if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a 
 				$_SESSION['prenom']=$ligne_utilisateur['prenom'];
 				$_SESSION['nom']=$ligne_utilisateur['nom'];
 
-				header('location:' . RACINE_CV . 'index.php');
+				header('location:utilisateurs.php');
 			}//ferme le if else
 }//ferme le if isset
 ?>
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Authentification : admin</title>
+        	<!-- Bootstrap -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+
+        <!--Mes styles-->
+        <link rel="stylesheet" type="text/css" href="css/styleadmin.css">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+    </head>
+<body>
 <div class="container">
         <div class="row conexion">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-4">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-4" style="margin-top:250px;">
 				<?= $msg; ?>
-                <div class="panel panel-default ">
+                <div class="panel panel-default">
                     <div class="text-center panel-heading panel-title">Se connecter</div>
                     <div class="panel-body">
                     <form action="#"  method="post">
@@ -74,6 +94,4 @@ if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a 
         </div>
     </div>
 </div>
-
-
 <?php require('inc/inc.footer.php'); ?>

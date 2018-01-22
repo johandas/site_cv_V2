@@ -1,7 +1,8 @@
 <?php
 require('inc/inc.header.php');
-if(!$_SESSION['connexion'] == 'connecté') {
-    header('location:sauthentifier.php');
+if(!$_SESSION['connexion']) {
+    header('location:../index_.php');
+    exit();
 }
 if(isset($_POST['modifie'])) {
     $id_utilisateur = addslashes($_POST['id_utilisateur']);

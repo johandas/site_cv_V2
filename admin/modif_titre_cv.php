@@ -1,5 +1,9 @@
 <?php
 require('inc/inc.header.php');
+if(!$_SESSION['connexion']) {
+    header('location:../index_.php');
+    exit();
+}
     // mise à jour d'un titre
     if(isset($_POST['titre_cv'])) { // Par le nom du premier input
         $titre_cv        = addslashes($_POST['titre_cv']);

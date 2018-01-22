@@ -21,7 +21,7 @@ $ligne_utilisateurs = $sql->fetch();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Développeur et intégrateur web junior. En recherche de stage !">
     <meta name="author" lang="fr" content="Johan DA SILVA">
-    <meta name="keywords" lang="fr" content="développeur, intégrateur, javascript, php, html, css, wordpress, bootstrap, mysql, base de donnée, internet, web, design, graphisme , jeux vidéo ">
+    <meta name="keywords" lang="fr" content="Da SILVA, johan, developpeur, integrateur, web, technologies, html, css, php, MySql, javascript, jQuery, Ajax, Silex, Laravel, Symfony, PhpOO, MVC, wordpress, bootstrap, site, dynamique, responsive, adaptatif, Paris, ile-de-france, Hauts-de-seine, France, Colombes, developpeur integrateur web, developpeur web, integrateur web, orienté object, reactjs, angularjs">
 
     <title>Johan Da Silva - Développeur & Intégrateur web</title>
 
@@ -197,22 +197,22 @@ $ligne_utilisateurs = $sql->fetch();
                     <div class="formulaire-contact">
                         <form class="form"action="#" method="post">
                             <div class="form-group">
-                                <label for="nom" class="labelContact">Nom :</label>
+                                <label for="nom" class="labelContact">Nom </label>
                                 <span class="error"><?php if(isset($erreurnom))  echo $erreurnom;  ?></span>
                                 <input type="text" name="co_nom" class="form-control inputContact" placeholder="Votre nom" value="<?php if(isset($co_nom)) echo $co_nom; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="email" class="labelContact">Email :</label>
+                                <label for="email" class="labelContact">Email </label>
                                 <span class="error"><?php if(isset($erreuremail))  echo $erreuremail;  ?></span>
                                 <input type="text" name="co_email"  class="form-control inputContact" placeholder="Votre email" value="<?php if(isset($co_email)) echo $co_email; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="sujet" class="labelContact">Sujet :</label>
+                                <label for="sujet" class="labelContact">Objet </label>
                                 <span class="error"><?php if(isset($erreursujet))  echo $erreursujet;  ?></span>
-                                <input type="text" name="co_sujet" class="form-control inputContact" placeholder="Votre sujet" value="<?php if(isset($co_sujet)) echo $co_sujet; ?>">
+                                <input type="text" name="co_sujet" class="form-control inputContact" placeholder="Votre objet" value="<?php if(isset($co_sujet)) echo $co_sujet; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="message" class="labelContact">Message :</label>
+                                <label for="message" class="labelContact">Message </label>
                                 <span class="error"><?php if(isset($erreurmessage))  echo $erreurmessage;  ?></span>
                                 <textarea type="text" name="co_message" class="form-control inputContact" cols="30" rows="10" placeholder="Votre message"><?php if(isset($co_message)) echo $co_message; ?></textarea>
                             </div>

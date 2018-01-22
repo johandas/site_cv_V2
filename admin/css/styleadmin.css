@@ -1,37 +1,64 @@
 @charset "UTF-8";
 /*CSS Document admin Johan*/
 
-body {
-    background : rgba(0,0,0,0.2);
+body  {
+    background : #111111;
 }
+
 /*DEBUT DE LA NAV*/
 .navbar {
-    /*background: #840404;*/
+    background:#232323;
     border-radius: 0;
 }
+.navbar-default {
+        border-color: #232323;
+}
+.navbar-default .navbar-brand{
+    color : #9C9C9C;
+
+}
+
+.navbar-default .navbar-brand:hover{
+    color : #FFFFFF;
+}
+.navbar-default .navbar-nav>li>a  {
+    color : #9C9C9C;
+}
+.navbar-default .navbar-nav>li>a:hover  {
+    color : #FF0B00;
+    transition : 0.5s ease-in;
+
+}
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    color : #FF0B00;
+    background:#232323;
+    border-color: #232323;
+}
+.dropdown-menu {
+    color : #9C9C9C;
+    background:#232323;
+}
+.dropdown-menu>li>a {
+    font-weight: bold;
+    color: #BFBFBF;
+}
+.dropdown-menu>li>a:hover {
+    color: #BFBFBF;
+    transition : 0.5s ease-in-out;
+    background:#5D5D5D;
+}
 /*FIN DE LA NAV*/
+
+/*Formulaire de connexion*/
+
+.formConnect {
+    background: #F5F5F5;
+}
 .supr {
     width: 50px;
 }
 .modif {
     width: 50px;
-}
-#grostitre{
-   background-image: url(../../img/light.webp);
-   background-size: cover;
-   color: transparent;
-   -moz-background-clip: text;
-   -webkit-background-clip: text;
-   text-transform: uppercase;
-   line-height: 70px;
-   margin: 10px 0;
-}
-.hoover-comment:hover {
-    text-decoration: none;
-    color : white;
-    background : rgba(225, 22, 30 , 0.8);
-    transition : .5s ease-in-out;
-}
-#supr-comment {
-    text-decoration: none;
 }

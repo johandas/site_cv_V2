@@ -2,6 +2,7 @@
 require('inc/inc.header.php');
         if(!$_SESSION['connexion']) {
             header('location:../index.php');
+            exit();
         }
     // Gestion des contenus de la Base de données
     $sql = $pdo->prepare("SELECT * FROM t_formations WHERE utilisateur_id = '1'");

@@ -1,5 +1,9 @@
 <?php
 require('inc/inc.header.php');
+if(!$_SESSION['connexion']) {
+    header('location:../index_.php');
+    exit();
+}
     // mise à jour d'une compétence
     if(isset($_POST['competence'])) { // Par le nom du premier input
         $competence = addslashes($_POST['competence']);

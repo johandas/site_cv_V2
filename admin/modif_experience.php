@@ -1,5 +1,9 @@
 <?php
 require('inc/inc.header.php');
+if(!$_SESSION['connexion']) {
+    header('location:../index_.php');
+    exit();
+}
     // mise à jour d'une experience
     if(isset($_POST['e_titre'])) { // Par le nom du premier input
         $e_titre        = addslashes($_POST['e_titre']);

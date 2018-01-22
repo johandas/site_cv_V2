@@ -27,17 +27,18 @@ $ligne_utilisateurs = $sql->fetch();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+        <?php if(userAdmin()) : ?>
           <a class="navbar-brand" href="<?php RACINE_CV ?>index.php">Accueil</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-    <?php if(userAdmin()) : ?>
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <a class="navbar-brand" href="<?php RACINE_CV ?>utilisateurs.php">Utilisateur</a>
             <a class="navbar-brand" href="<?php RACINE_CV ?>titre_cv.php">Titre CV</a>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parcours<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parcours</a>
               <ul class="dropdown-menu">
                 <li><a href="<?php RACINE_CV ?>experiences.php">Expériences</a></li>
                 <li><a href="<?php RACINE_CV ?>realisations.php">Réalisations</a></li>
@@ -45,7 +46,7 @@ $ligne_utilisateurs = $sql->fetch();
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compétences<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compétences</a>
               <ul class="dropdown-menu">
                 <li><a href="<?php RACINE_CV ?>competences.php">Compétences</a></li>
                 <li><a href="<?php RACINE_CV ?>loisirs.php">Loisirs</a></li>
@@ -54,14 +55,14 @@ $ligne_utilisateurs = $sql->fetch();
               </ul>
             </li>
         </ul>
-    <?php endif ?>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="<?php RACINE_CV ?>sauthentifier.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></span><span class="glyphicon glyphicon-off" aria-hidden="true"></span><span class="caret"></span></a>
+              <a href="<?php RACINE_CV ?>sauthentifier.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
               <ul class="dropdown-menu">
                 <li><a href="<?php RACINE_CV ?>sauthentifier.php">Connexion</a></li>
               </ul>
-        <?php if(userAdmin()) : ?>
               <ul class="dropdown-menu">
                 <li><a href="<?php RACINE_CV ?>sauthentifier.php?action=deconnexion">Déconnexion</a></li>
               </ul>
@@ -73,4 +74,3 @@ $ligne_utilisateurs = $sql->fetch();
     </nav>
   <!-- navbar bootstrap -->
   <div class="container">
-      <h1 class="well">Admin : <?= $ligne_utilisateurs['prenom'] . ' ' . $ligne_utilisateurs['nom'];  ?></h1>

@@ -1,5 +1,9 @@
 <?php
 require('inc/inc.header.php');
+if(!$_SESSION['connexion']) {
+    header('location:../index_.php');
+    exit();
+}
     // mise à jour d'une formation
     if(isset($_POST['f_titre'])) { // Par le nom du premier input
         $f_titre        = addslashes($_POST['f_titre']);

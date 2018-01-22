@@ -1,7 +1,17 @@
 <?php
-require('inc/inc.header.php');
+require('inc/inc.init.php');
 if(!$_SESSION['connexion']) {
     header('location:../index.php');
+    exit();
+}
+if(isset($_GET['deconnexion'])) {
+    $_SESSION['connexion'] = '';
+    $_SESSION['id_utilisateur'] = '';
+    $_SESSION['prenom'] = '';
+    $_SESSION['nom'] = '';
+        unset($_SESSION['connexion']);
+        session_destroy();
+    header('location:../index_.php');
 }
 if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a cliqué dessus)
 	$email = addslashes($_POST['email']);
@@ -23,18 +33,4 @@ if(isset($_POST['connexion'])){//on envoie le form avec le name du button (on a 
 				header('location:sauthentifier.php');
 			}//ferme le if else
 }//ferme le if isset
-
-if(isset($_GET['deconnexion'])) {
-    $_SESSION['connexion'] = '';
-    $_SESSION['id_utilisateur'] = '';
-    $_SESSION['prenom'] = '';
-    $_SESSION['nom'] = '';
-        unset($_SESSION['connexion']);
-        session_destroy();
-    header('location:../index_.php');
-}
-
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
 require('inc/inc.footer.php'); ?>
